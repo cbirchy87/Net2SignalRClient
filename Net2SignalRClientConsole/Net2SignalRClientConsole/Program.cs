@@ -31,8 +31,8 @@ namespace Net2SignalRClientConsole
             //Subscribe to the hubs. 
 
             //SubscribeToLiveEvents();
-            //SubscribeToDoorStatusEvents(new List<int> { 7898066 });
-            //SubscribeToDoorStatusEvents(new List<int> { 7898066 });
+            //SubscribeToLiveDoorEvents(new List<int> { 7898066 });
+            SubscribeToDoorStatusEvents(new List<int> { 7898066 });
             //SubscribeToRollCall(1);
             Console.Read();
         }
