@@ -6,9 +6,13 @@ namespace Net2SignalRClientConsole
 {
     internal class Program
     {
+        //Net2 Local API Address
         readonly static string net2APIURL = "http://localhost:8080";
+        //Net2 API client ID. This is the name of the licence file provided to you. This is a GUID.
         readonly static string clientId = "";
-        readonly static string net2OperatorUsername = "System engineer";
+        //Net2 Operator. This can be any Net2 operator.
+        readonly static string net2OperatorUsername = "OEM Client";
+        //Password for the above user.
         readonly static string net2OperatorPassword = "admin";
 
         static string apiAccessToken;
@@ -24,14 +28,16 @@ namespace Net2SignalRClientConsole
             //Connect to the Net2 SignalR Hub
             ConnectToSignalRHub();
 
-            //Subscribe 
-            SubscribeToLiveEvents();
+            //Subscribe to the hubs. 
 
-            IncomingLiveEventHandler();
+            //SubscribeToLiveEvents();
+            //SubscribeToDoorStatusEvents(new List<int> { 7898066 });
+            //SubscribeToDoorStatusEvents(new List<int> { 7898066 });
+            //SubscribeToRollCall(1);
             Console.Read();
         }
 
-
+        #region Net2 API Connection
         private static async Task GetNet2AccessToken()
         {
             var payload = new Dictionary<string, string>
@@ -66,6 +72,8 @@ namespace Net2SignalRClientConsole
                 }
             }).Wait();
         }
+        #endregion
+        #region Hub Subs
         private static void SubscribeToLiveEvents()
         {
             net2HubProxy.Invoke("subscribeToLiveEvents").ContinueWith(task =>
@@ -82,13 +90,95 @@ namespace Net2SignalRClientConsole
                 }
             }).Wait();
         }
+        private static void SubscribeToLiveDoorEvents(IEnumerable<int> doorsToMonitor)
+        {
+            foreach (var door in doorsToMonitor)
+            {
+                net2HubProxy.Invoke("subscribeToDoorEvents", door).ContinueWith(task =>
+                {
+                    if (task.IsFaulted)
+                    {
+                        Console.WriteLine("Issue calling send: {0}", task.Exception.GetBaseException());
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Subscribed to Door Events");
+                        IncomingLiveDoorEventHandler();
+                    }
+                }).Wait();
+            }
+        }
+        private static void SubscribeToDoorStatusEvents(IEnumerable<int> doorsToMonitor)
+        {
+            foreach (var door in doorsToMonitor)
+            {
+                net2HubProxy.Invoke("subscribeToDoorStatusEvents", door).ContinueWith(task =>
+                {
+                    if (task.IsFaulted)
+                    {
+                        Console.WriteLine("Issue calling send: {0}", task.Exception.GetBaseException());
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Subscribed to Door Status Events");
+                        IncomingDoorStatusEventHandler();
+                    }
+                }).Wait();
+            }
+        }
+        private static void SubscribeToRollCall(int rollCallId)
+        {
+            net2HubProxy.Invoke("subscribeToRollCallEvents", rollCallId).ContinueWith(task =>
+            {
+                if (task.IsFaulted)
+                {
+                    Console.WriteLine("Issue calling send: {0}", task.Exception.GetBaseException());
+                    Console.ReadKey();
+                }
+                else
+                {
+                    Console.WriteLine($"Subscribed to Roll Call {rollCallId}");
+                    IncomingRollCallHandler();
+                }
+            }).Wait();
+        }
+        #endregion
+        #region Event Handlers
         private static void IncomingLiveEventHandler()
         {
-            //List<int> ValidEventTypes = new List<int> { 15, 20, 21, 22, 26, 27, 30, 110 };
+            Console.WriteLine("Listening for LiveEvents");
+
             net2HubProxy.On("liveEvents", t =>
             {
                 Console.WriteLine(t);    
             });
         }
+        private static void IncomingLiveDoorEventHandler()
+        {
+            Console.WriteLine("Listening for DoorEvents");
+            net2HubProxy.On("doorEvents", t =>
+            {
+                Console.WriteLine(t);
+            });
+        }
+        private static void IncomingDoorStatusEventHandler()
+        {
+            Console.WriteLine("Listening for DoorStatusEvents");
+            net2HubProxy.On("doorStatusEvents ", t =>
+            {
+                Console.WriteLine(t);
+            });
+        }
+        private static void IncomingRollCallHandler()
+        {
+            Console.WriteLine("Listening for Safe/Unsafe Events");
+            net2HubProxy.On("rollCallEvents  ", t =>
+            {
+                Console.WriteLine(t);
+            });
+        }
+        #endregion
     }
 }

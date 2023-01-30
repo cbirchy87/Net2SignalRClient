@@ -16,3 +16,12 @@ C:\source\Net2SignalRClient\Net2SignalRClientConsole\Net2SignalRClientConsole\ob
 C:\source\Net2SignalRClient\Net2SignalRClientConsole\Net2SignalRClientConsole\obj\Debug\net6.0\Net2SignalRClientConsole.genruntimeconfig.cache
 C:\source\Net2SignalRClient\Net2SignalRClientConsole\Net2SignalRClientConsole\obj\Debug\net6.0\ref\Net2SignalRClientConsole.dll
 C:\source\Net2SignalRClient\Net2SignalRClientConsole\Net2SignalRClientConsole\bin\Debug\net6.0\Microsoft.AspNet.SignalR.Client.dll
+C:\source\Net2SignalRClient\Net2SignalRClientConsole\Net2SignalRClientConsole\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+C:\source\Net2SignalRClient\Net2SignalRClientConsole\Net2SignalRClientConsole\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\source\Net2SignalRClient\Net2SignalRClientConsole\Net2SignalRClientConsole\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\source\Net2SignalRClient\Net2SignalRClientConsole\Net2SignalRClientConsole\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
+C:\source\Net2SignalRClient\Net2SignalRClientConsole\Net2SignalRClientConsole\bin\Debug\net6.0\Microsoft.Extensions.Configuration.UserSecrets.dll
+C:\source\Net2SignalRClient\Net2SignalRClientConsole\Net2SignalRClientConsole\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\source\Net2SignalRClient\Net2SignalRClientConsole\Net2SignalRClientConsole\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
+C:\source\Net2SignalRClient\Net2SignalRClientConsole\Net2SignalRClientConsole\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\source\Net2SignalRClient\Net2SignalRClientConsole\Net2SignalRClientConsole\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll

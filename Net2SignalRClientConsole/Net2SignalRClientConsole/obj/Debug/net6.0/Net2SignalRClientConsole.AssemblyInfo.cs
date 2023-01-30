@@ -11,6 +11,7 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("e4a70aa9-c7ef-4f1d-a892-d6e33bf537e2")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("Net2SignalRClientConsole")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
