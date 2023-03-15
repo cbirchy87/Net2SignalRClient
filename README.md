@@ -7,3 +7,10 @@ Support for all the hubs
 - subscribeToRollCallEvents - subscribes to the safe/unsafe events in a particular roll call. You must supply the roll call ID as a parameter.
 - subscribeToDoorEvents - subscribes to the open/close events of a particular door. You must supply the door address (serial number) as a parameter.
 - subscribeToDoorStatusEvents - subscribes to the status updates of a particular door. You must supply the door address (serial number) as a parameter.
+
+Setup
+
+1. Change the Net2 Operator  username and password for correct details
+2. Ensure the URL is correct. 
+3. Uncomment what hub you want to connect to
+4. for hubs that require ACU serial numbers add these to the handler. 
