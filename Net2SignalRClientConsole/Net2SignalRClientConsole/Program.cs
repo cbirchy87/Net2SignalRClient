@@ -1,22 +1,26 @@
 ﻿using Microsoft.AspNet.SignalR.Client;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using System.Net;
 
 namespace Net2SignalRClientConsole
 {
     internal class Program
     {
-        //Net2 Local API Address
-        readonly static string net2APIURL = "http://localhost:8080";
-        //Net2 API client ID. This is the name of the licence file provided to you. This is a GUID.
-        readonly static string clientId = "";
-        //Net2 Operator. This can be any Net2 operator.
-        readonly static string net2OperatorUsername = "OEM Client";
-        //Password for the above user.
-        readonly static string net2OperatorPassword = "admin";
+        static readonly IConfiguration configuration = new ConfigurationBuilder()
+            .SetBasePath(AppContext.BaseDirectory)
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+            .Build();
+
+        static readonly string net2APIURL = configuration["Net2Config:ApiUrl"]!;
+        static readonly string clientId = configuration["Net2Config:ClientId"]!;
+        static readonly string net2OperatorUsername = configuration["Net2Config:OperatorUsername"]!;
+        static readonly string net2OperatorPassword = configuration["Net2Config:OperatorPassword"]!;
 
         static string apiAccessToken;
-        static HttpClient httpClient = new HttpClient();
+        static HttpClient httpClient = new HttpClient(new HttpClientHandler
+        {
+            ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+        });
         private static HubConnection hubCnn;
         private static IHubProxy net2HubProxy;
 
@@ -28,12 +32,24 @@ namespace Net2SignalRClientConsole
             //Connect to the Net2 SignalR Hub
             ConnectToSignalRHub();
 
-            //Subscribe to the hubs. 
+            //Subscribe to the hubs based on config
+            var subscribeLiveEvents = configuration.GetValue<bool>("Subscriptions:LiveEvents");
+            var liveDoorEvents = configuration.GetSection("Subscriptions:LiveDoorEvents").Get<int[]>() ?? Array.Empty<int>();
+            var doorStatusEvents = configuration.GetSection("Subscriptions:DoorStatusEvents").Get<int[]>() ?? Array.Empty<int>();
+            var rollCallIds = configuration.GetSection("Subscriptions:RollCall").Get<int[]>() ?? Array.Empty<int>();
 
-            //SubscribeToLiveEvents();
-            //SubscribeToLiveDoorEvents(new List<int> { 7898066 });
-            SubscribeToDoorStatusEvents(new List<int> { 7898066 });
-            //SubscribeToRollCall(1);
+            if (subscribeLiveEvents)
+                SubscribeToLiveEvents();
+
+            if (liveDoorEvents.Length > 0)
+                SubscribeToLiveDoorEvents(liveDoorEvents);
+
+            if (doorStatusEvents.Length > 0)
+                SubscribeToDoorStatusEvents(doorStatusEvents);
+
+            foreach (var rollCallId in rollCallIds)
+                SubscribeToRollCall(rollCallId);
+
             Console.Read();
         }
 
@@ -64,11 +80,14 @@ namespace Net2SignalRClientConsole
             hubCnn = new HubConnection(net2APIURL, "token=" + apiAccessToken);
             string net2EventHub = "eventHubLocal";
             net2HubProxy = hubCnn.CreateHubProxy(net2EventHub);
-            hubCnn.Start().ContinueWith(task =>
+
+            // Use custom IHttpClient that bypasses SSL validation on .NET 6+
+            var sslBypassClient = new SslBypassHttpClient();
+            hubCnn.Start(new Microsoft.AspNet.SignalR.Client.Transports.LongPollingTransport(sslBypassClient)).ContinueWith(task =>
             {
                 if (task.IsFaulted)
                 {
-                    throw new Exception(string.Format("Error opening the connection:{ 0 }", task.Exception.GetBaseException()));
+                    throw new Exception($"Error opening the connection: {task.Exception.GetBaseException()}");
                 }
             }).Wait();
         }

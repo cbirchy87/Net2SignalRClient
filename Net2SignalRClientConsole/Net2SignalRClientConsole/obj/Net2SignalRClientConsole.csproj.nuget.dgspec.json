@@ -1,36 +1,41 @@
 {
   "format": 1,
   "restore": {
-    "C:\\source\\Net2SignalRClient\\Net2SignalRClientConsole\\Net2SignalRClientConsole\\Net2SignalRClientConsole.csproj": {}
+    "C:\\Source\\Net2SignalRClient2\\Net2SignalRClientConsole\\Net2SignalRClientConsole\\Net2SignalRClientConsole.csproj": {}
   },
   "projects": {
-    "C:\\source\\Net2SignalRClient\\Net2SignalRClientConsole\\Net2SignalRClientConsole\\Net2SignalRClientConsole.csproj": {
+    "C:\\Source\\Net2SignalRClient2\\Net2SignalRClientConsole\\Net2SignalRClientConsole\\Net2SignalRClientConsole.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\source\\Net2SignalRClient\\Net2SignalRClientConsole\\Net2SignalRClientConsole\\Net2SignalRClientConsole.csproj",
+        "projectUniqueName": "C:\\Source\\Net2SignalRClient2\\Net2SignalRClientConsole\\Net2SignalRClientConsole\\Net2SignalRClientConsole.csproj",
         "projectName": "Net2SignalRClientConsole",
-        "projectPath": "C:\\source\\Net2SignalRClient\\Net2SignalRClientConsole\\Net2SignalRClientConsole\\Net2SignalRClientConsole.csproj",
+        "projectPath": "C:\\Source\\Net2SignalRClient2\\Net2SignalRClientConsole\\Net2SignalRClientConsole\\Net2SignalRClientConsole.csproj",
         "packagesPath": "C:\\Users\\Chris Birch\\.nuget\\packages\\",
-        "outputPath": "C:\\source\\Net2SignalRClient\\Net2SignalRClientConsole\\Net2SignalRClientConsole\\obj\\",
+        "outputPath": "C:\\Source\\Net2SignalRClient2\\Net2SignalRClientConsole\\Net2SignalRClientConsole\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
           "C:\\Users\\Chris Birch\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Telerik UI for WPF.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.telerik.com/v3/index.json": {},
+          "https://pkgs.dev.azure.com/Paxton-Access/_packaging/paxton-Net2/nuget/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
+            "framework": "net6.0",
             "targetAlias": "net6.0",
             "projectReferences": {}
           }
@@ -39,15 +44,30 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net6.0": {
+          "framework": "net6.0",
           "targetAlias": "net6.0",
           "dependencies": {
             "Microsoft.AspNet.SignalR.Client": {
               "target": "Package",
               "version": "[2.4.3, )"
+            },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[6.0.0, )"
             },
             "Microsoft.Extensions.Configuration.UserSecrets": {
               "target": "Package",
@@ -74,7 +94,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

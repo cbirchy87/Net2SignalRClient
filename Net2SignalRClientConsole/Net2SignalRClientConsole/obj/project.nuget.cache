@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "UEeRXo2Q8td2v4BX8mgqFG9KKIuslOQ9V60id+NJJBziq3jAIgZyn1LE11w/w1PsP7XTmlBPz4gbOzAC4gf9Wg==",
+  "dgSpecHash": "D2eyLRK1yyc=",
   "success": true,
-  "projectFilePath": "C:\\source\\Net2SignalRClient\\Net2SignalRClientConsole\\Net2SignalRClientConsole\\Net2SignalRClientConsole.csproj",
+  "projectFilePath": "C:\\Source\\Net2SignalRClient2\\Net2SignalRClientConsole\\Net2SignalRClientConsole\\Net2SignalRClientConsole.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Chris Birch\\.nuget\\packages\\microsoft.aspnet.signalr.client\\2.4.3\\microsoft.aspnet.signalr.client.2.4.3.nupkg.sha512",
     "C:\\Users\\Chris Birch\\.nuget\\packages\\microsoft.extensions.configuration\\6.0.0\\microsoft.extensions.configuration.6.0.0.nupkg.sha512",
     "C:\\Users\\Chris Birch\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\Chris Birch\\.nuget\\packages\\microsoft.extensions.configuration.binder\\6.0.0\\microsoft.extensions.configuration.binder.6.0.0.nupkg.sha512",
     "C:\\Users\\Chris Birch\\.nuget\\packages\\microsoft.extensions.configuration.fileextensions\\6.0.0\\microsoft.extensions.configuration.fileextensions.6.0.0.nupkg.sha512",
     "C:\\Users\\Chris Birch\\.nuget\\packages\\microsoft.extensions.configuration.json\\6.0.0\\microsoft.extensions.configuration.json.6.0.0.nupkg.sha512",
     "C:\\Users\\Chris Birch\\.nuget\\packages\\microsoft.extensions.configuration.usersecrets\\6.0.1\\microsoft.extensions.configuration.usersecrets.6.0.1.nupkg.sha512",
